@@ -1,7 +1,14 @@
 import React                 from "react"
-import ReactDOM              from "react-dom"
+import { render }            from "react-dom"
 
-ReactDOM.render(
-  <h1>Hello React!</h1>,
+import App                   from "./App"
+
+const todos = [
+  { id: 1, text: "First" },
+  { id: 2, text: "second" },
+]
+
+render(
+  <App todos={ todos } />,
   document.getElementById("root")
 )
