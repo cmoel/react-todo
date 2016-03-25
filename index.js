@@ -1,14 +1,17 @@
 import React                 from "react"
 import { render }            from "react-dom"
 
-import App                   from "./App"
+import { configureStore }    from "./store"
+import Root                  from "./Root"
 
 const todos = [
   { id: 1, text: "First" },
   { id: 2, text: "second" },
 ]
 
+const store = configureStore({ todos })
+
 render(
-  <App todos={ todos } />,
+  <Root store={store} />,
   document.getElementById("root")
 )
