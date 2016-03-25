@@ -1,4 +1,5 @@
 import React, { PropTypes }             from "react"
+import { connect }                      from "react-redux"
 
 import TodoListItem                     from "../TodoListItem"
 
@@ -21,4 +22,11 @@ TodoList.propTypes = {
   })).isRequired
 }
 
-export default TodoList
+function mapStateToProps(state) {
+  const { todos } = state
+  return {
+    todos
+  }
+}
+
+export default connect(mapStateToProps)(TodoList)

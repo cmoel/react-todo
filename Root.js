@@ -1,11 +1,13 @@
 import React, { PropTypes }                                from "react"
+import { Provider }                                        from "react-redux"
 
 import App                                                 from "./App"
 
 const Root = ({ store }) => {
-  const { todos } = store.getState()
   return (
-    <App todos={todos} />
+    <Provider store={store}>
+      <App />
+    </Provider>
   )
 }
 
