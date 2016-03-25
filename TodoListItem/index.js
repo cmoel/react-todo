@@ -1,14 +1,17 @@
 import React             from "react"
+import { connect }       from "react-redux"
+
+import { deleteTodo }    from "../actions"
 
 import "./index.css"
 
-const TodoListItem = ({ id, text, clicker }) => {
+const TodoListItem = ({ id, text, dispatch }) => {
   return (
     <li
       className="TodoListItem"
-      onClick={() => { clicker(text) }}
+      onClick={ () => dispatch(deleteTodo(id)) }
     >{text}</li>
   )
 }
 
-export default TodoListItem
+export default connect()(TodoListItem)
