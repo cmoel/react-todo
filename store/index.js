@@ -5,6 +5,8 @@ import { defaultTo }                                  from "ramda"
 import reducer                                        from "../reducers"
 import * as Storage                                   from "../utils/storage"
 
+const localTodos = Storage.get("todos")
+
 export function initialTodos() {
   const initialTodos = {
     data: [],
@@ -12,7 +14,7 @@ export function initialTodos() {
   }
 
   const defaultToInitialTodos = defaultTo(initialTodos)
-  return defaultToInitialTodos(Storage.get("todos"))
+  return defaultToInitialTodos(localTodos)
 }
 
 const persistTodos = store => next => action => {
