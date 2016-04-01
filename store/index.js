@@ -15,6 +15,11 @@ export function initialTodos() {
   return defaultToInitialTodos(Storage.get("todos"))
 }
 
+const persistTodos = store => next => action => {
+  setTimeout(() => { Storage.set("todos", store.getState().todos) })
+  return next(action)
+}
+
 export function configureStore() {
   const initialState = {
     todos: initialTodos()
@@ -23,7 +28,7 @@ export function configureStore() {
   const store = createStore(
     reducer,
     initialState,
-    applyMiddleware(thunk)
+    applyMiddleware(thunk, persistTodos)
   )
 
   return store
