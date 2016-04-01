@@ -5,6 +5,9 @@ function todos(state = initialTodos(), action) {
   const { data, nextId } = state
   switch (type) {
 
+    case "INIT_TODOS":
+      return payload.todos
+
     case "ADD_TODO":
       const { todoBody } = payload
       const newData = [

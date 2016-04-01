@@ -1,18 +1,27 @@
-import React, { PropTypes }                                from "react"
-import { Provider }                                        from "react-redux"
+import React, { Component, PropTypes }                     from "react"
+import { Provider, connect }                               from "react-redux"
 
 import App                                                 from "./App"
+import { initTodos }                                       from "./actions"
 
-const Root = ({ store }) => {
-  return (
-    <Provider store={store}>
-      <App />
-    </Provider>
-  )
+class Root extends Component {
+  componentDidMount() {
+    const { dispatch } = this.props
+    dispatch(initTodos())
+  }
+
+  render() {
+    const { store } = this.props
+    return (
+      <Provider store={store}>
+        <App />
+      </Provider>
+    )
+  }
 }
 
 Root.propTypes = {
   store: PropTypes.object.isRequired
 }
 
-export default Root
+export default connect()(Root)

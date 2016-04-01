@@ -1,3 +1,14 @@
+import { initialTodos }       from "./store"
+
+export function initTodos() {
+  return {
+    type: "INIT_TODOS",
+    payload: {
+      todos: initialTodos()
+    }
+  }
+}
+
 export function addTodo(todoBody) {
   return {
     type: "ADD_TODO",
