@@ -4,10 +4,11 @@ import { connect }                      from "react-redux"
 import TodoListItem                     from "../TodoListItem"
 
 const TodoList = ({ todos }) => {
+  const { data } = todos
   return (
-    todos.length > 0
+    data.length > 0
     ? <ul>
-        { todos.map((todo, i) => {
+        { data.map((todo, i) => {
           return <TodoListItem key={`todo-${todo.id}`} {...todo} />
         }) }
       </ul>
@@ -15,11 +16,15 @@ const TodoList = ({ todos }) => {
   )
 }
 
+const TodoShape = PropTypes.shape({
+  id: PropTypes.number,
+  text: PropTypes.string,
+})
+
 TodoList.propTypes = {
-  todos: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number,
-    text: PropTypes.string,
-  })).isRequired
+  todos: PropTypes.shape({
+    data: PropTypes.arrayOf( TodoShape ).isRequired
+  })
 }
 
 function mapStateToProps(state) {

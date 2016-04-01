@@ -6,7 +6,10 @@ import reducer                                        from "../reducers"
 import * as Storage                                   from "../utils/storage"
 
 export function initialTodos() {
-  const initialTodos = []
+  const initialTodos = {
+    data: [],
+    nextId: 1
+  }
 
   const defaultToInitialTodos = defaultTo(initialTodos)
   return defaultToInitialTodos(Storage.get("todos"))

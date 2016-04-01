@@ -1,17 +1,27 @@
-function todos(state = [], action) {
+import { initialTodos }       from "../store"
+
+function todos(state = initialTodos(), action) {
   const { type, payload } = action
+  const { data, nextId } = state
   switch (type) {
 
     case "ADD_TODO":
       const { todoBody } = payload
-      return [
-        ...state,
-        { text: todoBody, id: (state.length + 1) }
+      const newData = [
+        ...data,
+        { text: todoBody, id: nextId }
       ]
+      return {
+        data: newData,
+        nextId: nextId + 1
+      }
 
     case "DELETE_TODO":
       const { todoId } = payload
-      return state.filter((todo) => todo.id !== todoId)
+      return {
+        nextId,
+        data: data.filter((todo) => todo.id !== todoId)
+      }
 
     default:
       return state
